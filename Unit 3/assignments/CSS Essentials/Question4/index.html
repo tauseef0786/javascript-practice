@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 5px;
+            padding: 0;
+            border: .5px solid rgb(156, 156, 165);    
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        thead{
+            font-family: sans-serif; 
+            background-color: green;
+            
+        }
+
+        th, td {
+            border: 1px solid black;
+            padding: 8px;
+            text-align: left;
+        
+        }
+        td{
+            font-family: 'Times New Roman', serif; 
+        }
+        #total-row {
+            font-weight: bold;
+            background-color: #e9ecef;
+        }
+
+    </style>
+</head>
+<body>
+    <table>
+        <thead>
+            <tr>
+                <th>Product</th>
+                <th>Quantity</th>
+                <th>Price per Unit</th>
+                <th>Description</th>
+                <th>Total</th>
+            </tr>
+        </thead>
+        <tbody >
+            <tr>
+                <td>Product 1</td>
+                <td>2</td>
+                <td>$10.00</td>
+                <td>This is product 1</td>
+                <td>$20.00</td>
+            </tr>
+            <tr>
+                <td>Product 2</td>
+                <td>3</td>
+                <td>$5.00</td>
+                <td>This is product 2</td>
+                <td>$15.00</td>
+            </tr>
+            <tr id="total-row">
+                <td colspan="4">Sum</td>
+                <td>$35.00</td>
+            </tr>
+        </tbody>
+            
+    </table>
+    </div>
+</body>
+</html>
+
+    
+</body>
+</html>

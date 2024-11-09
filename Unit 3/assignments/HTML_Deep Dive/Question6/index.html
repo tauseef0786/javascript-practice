@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body{
+            font-family: Arial, Helvetica, sans-serif;
+            margin: 20px;
+            background-color: cadetblue;
+        }
+        form{
+            max-width: 600px;
+            margin: auto;
+        }
+        lable{
+            display: block;
+            margin: 10px 0 5px;
+        }
+        textarea{
+            width: 100%;
+            box-sizing: border-box;
+        }
+        fieldset{
+            border: none;
+            margin: 10px 0;
+            padding: 0;
+        }
+        legend{
+            font-weight: bold;
+        }
+        button{
+            display:inline-block;
+            margin-top: 10px;
+            padding: 10px 20px;
+            cursor: pointer;
+            background-color: rgb(156, 36, 12);
+        }
+        #feedback{
+            display: block;
+            font-style: italic;
+        }
+        #message{
+            display: block;
+        }
+        #website{
+            display: block;
+            padding-top: 20px;
+        }
+       
+    </style>
+</head>
+<body>
+    <form>
+        <label for="feedback-type">Feedback Type:</label>
+        <select id="feedback" name="feedback-type">
+            <option value="general">Good</option>
+            <option value="bug">Bug</option>
+            <option value="suggestion">Best</option>
+        </select>
+
+        <label for="message">Your Message:</label>
+        <textarea id="message" name="message" rows="4" cols="50"></textarea>
+
+        <fieldset>
+            <legend>Website Rating:</legend>
+            <label for="rating-1">
+                <input type="radio" id="rating-1" name="rating" value="1"> 1
+            </label>
+            <label for="rating-2">
+                <input type="radio" id="rating-2" name="rating" value="2"> 2
+            </label>
+            <label for="rating-3">
+                <input type="radio" id="rating-3" name="rating" value="3"> 3
+            </label>
+            <label for="rating-4">
+                <input type="radio" id="rating-4" name="rating" value="4"> 4
+            </label>
+            <label for="rating-5">
+                <input type="radio" id="rating-5" name="rating" value="5"> 5
+            </label>
+        </fieldset>
+
+        <label for="age">Age:</label>
+        <input type="number" id="age" name="age" min="10" max="100">
+
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" required>
+
+        <label for="password">Password:</label>
+        <input type="password" id="password" name="password" minlength="8">
+
+        <label id="website"for="website">Website Url(Optional):</label>
+        <input type="url" id="website" name="website">
+
+        <label for="terms">
+            <input type="checkbox" id="terms" name="terms" required> I agree to the terms and conditions
+        </label>
+
+        <button id=" button" type="submit">Submit</button>
+    </form>
+
+</body>
+</html>
