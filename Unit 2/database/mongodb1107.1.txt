@@ -1,0 +1,34 @@
+Question1:
+db.fort.find({ "name": /^G/ })
+
+Question2:
+db.fort.find({ "locations": { "$elemMatch": { "$regex": "^Ch", "$options": "i" } } })
+
+Question3:
+db.fort.find({ "details.Type": { "$regex": "Fort", "$options": "i" } })
+
+Question4:
+db.fort.find({ "name": /Fort$/ })
+
+
+Question5:
+db.fort.find({ "name": { "$regex": "(Konda|Giri)", "$options": "i" } })
+
+Question6:
+db.fort.find({ "locations": { "$elemMatch": { "$regex": "India", "$options": "i" } } })
+
+
+Question7:
+db.fort.find({ "last_edited": /^This page was last edited on/ })
+
+
+Question8:
+db.fort.find({ "details.Built": { "$regex": "century", "$options": "i" } })
+
+
+Question9:
+db.fort.find({ "name": { "$regex": "^(B|C)", "$options": "" } })
+
+
+Question10:
+db.fort.find({ "images": { "$elemMatch": { "$regex": "\.png$", "$options": "" } } })

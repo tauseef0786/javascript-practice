@@ -1,0 +1,31 @@
+Question1:
+db.products.find({price:{$gte:100}})
+
+Question2:
+db.products.find({"details.manufacturer":{$ne:"Apple"}})
+
+Question3:
+db.products.find({tags:{$in:["wireless","bluetooth"]}})
+
+Question4:
+db.products.find({$and:[{in_stock:true},{price:{$lt:50}}]})
+
+Question5:
+db.products.find({$or:[{in_stock:false},{price:{$gt:300}}]})
+
+Question6:
+db.products.find({tags:{$size:4}})
+
+Question7:
+db.products.find({in_stock:true}).count()
+
+Question8:
+db.products.updateOne({name:"Bloetooth Mouse"})
+
+
+Question9:
+db.products.updateMany({tags:"electronics"},{$set:{in_stock:true}})
+
+
+Question10:
+db.products.deleteOne({name:"LED lamp"})

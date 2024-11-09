@@ -1,0 +1,33 @@
+Question1:
+db.employees.aggregate([{ $lookup: { from: "departments",
+ localField: "department_id", foreignField: "_id",
+  as: "department_info" } }, { $project: { "name": 1, "age": 1,
+   "department_name": { $arrayElemAt: ["$department_info.name", 0] } } }])
+
+Question2:
+db.employees.aggregate([{ $lookup: { from: "projects",
+ localField: "projects", foreignField: "_id", as: "projects_info" } },
+  { $project: { "name": 1, "projects": "$projects_info.name" } }])
+
+Question3:
+db.employees.aggregate([{ $lookup: { from: "offices",
+ localField: "office_id", foreignField: "_id", as: "office_info" } },
+  { $project: { "name": 1, "salary": 1, "office_address": { $arrayElemAt: 
+  ["$office_info.address", 0] } } }])
+
+Question4:
+db.employees.aggregate([{ $group: { _id: "$department_id", 
+count: { $sum: 1 } } }, { $lookup: { from: "departments", localField: "_id",
+ foreignField: "_id", as: "department_info" } }, { $sort: { "count": -1 } },
+  { $limit: 1 }, { $project: { "department_name": 
+  { $arrayElemAt: ["$department_info.name", 0] }, "employee_count": "$count" } }])
+
+
+Question5:
+db.sales.aggregate([{ $group: { _id: "$employee_id", 
+total_sales: { $sum: "$amount" } } }, { $lookup: { from: "employees", 
+localField: "_id", foreignField: "_id", as: "employee_info" } }, 
+{ $sort: { "total_sales": -1 } }, { $limit: 1 }, 
+{ $project: { "employee_name": { $arrayElemAt: ["$employee_info.name", 0] }, 
+"total_sales": 1 } }])
+

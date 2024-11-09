@@ -1,0 +1,48 @@
+
+2. Needs analysis
+Specify the problem statement and system requirements::
+
+Answer:
+Provide personalized recommendations based on user interests and reading habits.
+Incorporate machine learning to improve recommendations.
+Allow the user to add suggestions, customization changes, and personal updates.
+
+Discuss the assumptions made in the study::
+
+Answer:
+Users have unique IDs.
+Reading history includes timestamped records of transactions.
+Content metadata includes attributes such as title, author, and genre.
+Gather user interest and prioritize it.
+
+3. Entity descriptions
+Describe each item in detail, including its purpose and main characteristics::
+Discuss the assumptions made in the study::
+
+Answer:
+Institutions:
+User information:
+Attributes: User ID (PK), user name, email, preference (stored in JSON or similar), date of registration, last active timestamp.
+Purpose: To collect information about each user including their preferences and behaviour.
+History: Reading:
+
+Attributes: connection ID (PK), user ID (FK), content ID (FK), connection type (e.g., read, like), timestamp.
+Purpose: Documents interactions between users and content, facilitating personalized recommendations.
+Content metadata:
+
+Attributes: Content ID (PK), Title, Author, Type, Description, Tags, Publish Date, Rating.
+Purpose: Collects information about each item in the library.
+Contact information:
+
+Attributes: Connection ID (PK), User ID (FK), Content ID (FK), Connection type, timestamp.
+Purpose: Records all user interactions and content to improve recommendation processes.
+
+
+4. Establishing relationships
+
+Answer:
+Relationships:
+Reading history user profile: One-to-many option (a user can have multiple reading history entries).
+User Profile to Interaction Data: One-to-many (One user can have many interaction records).
+Content Metadata to Reading History: One-to-many (One content item can have many reading history records).
+Content Metadata to Interaction Data: One-to-many (One content item can have many interaction records).

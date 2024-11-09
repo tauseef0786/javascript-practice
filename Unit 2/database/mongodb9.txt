@@ -1,0 +1,92 @@
+Question1:
+db.projects.aggregate([
+  {$lookup: {from: "departments",
+    localField: "department",
+    foreignField: "_id",
+    as: "department"}},
+  {$unwind: "$department" },
+  {$sort: { budget: -1 } },
+  {$limit: 1}])
+
+Question2:
+db.employees.find(
+  { "department_id": 101 },
+  { "_id": 0, "name": 1, "hire_date": 1 }
+).sort({ "hire_date": 1 })
+
+Question3:
+db.projects.find(
+  { "department": 102 }
+).sort({ "budget": -1 })
+
+
+Question4:
+db.sales.aggregate([{ $lookup: { from: "employees", 
+localField: "employee_id", foreignField: "_id", as: "employee_info" } },
+ { $unwind: "$employee_info" }, { $match: { "employee_info.department_id": 102,
+  "sale_date": { $gte: ISODate("2023-09-15") } } }, 
+  { $sort: { "sale_date": 1 } }])
+
+
+Question5:
+db.projects.aggregate([
+  {$match: {"_id": { $in: db.employees.findOne({ "name": "John Doe" }).projects } }},
+  {$lookup: {
+      from: "departments",
+      localField: "department",
+      foreignField: "_id",
+      as: "department"}},
+  {$unwind: "$department"
+  },{$project: {
+      "name": 1,
+      "budget": 1,
+      "department.name": 1 }}])
+
+Question6:
+db.projects.aggregate([{ $match: { "name": "Payroll Software" } }, 
+{ $lookup: { from: "employees", localField: "_id", foreignField: "projects", 
+as: "employees_info" } }, { $lookup: { from: "offices", localField: "office_id",
+ foreignField: "_id", as: "office_info" } }, { $unwind: "$employees_info" }, 
+ { $project: { "employee_name": "$employees_info.name", 
+ "office_address": { $arrayElemAt: ["$office_info.address", 0] } } }])
+
+Question7:
+db.sales.aggregate([{ $lookup: { from: "employees", localField: "employee_id", 
+foreignField: "_id", as: "employee_info" } }, { $unwind: "$employee_info" }, 
+{ $match: { "employee_info.department_id": 103 } }, 
+{ $lookup: { from: "offices", localField: "employee_info.office_id", 
+foreignField: "_id", as: "office_info" } }, { $project: 
+{ "employee_name": "$employee_info.name", "sale_amount": "$amount", 
+"office_address": { $arrayElemAt: ["$office_info.address", 0] } } }])
+
+Question8:
+db.sales.aggregate([{ $lookup: { from: "employees", 
+localField: "employee_id", foreignField: "_id", as: "employee_info" } }, 
+{ $unwind: "$employee_info" }, { $group: { _id: "$employee_info.department_id",
+ top_employee: { $max: { employee_name: "$employee_info.name", 
+ total_sales: { $sum: "$amount" } } } } }, { $lookup: { from: "departments", 
+ localField: "_id", foreignField: "_id", as: "department_info" } },
+  { $project: { "department_name": { $arrayElemAt: ["$department_info.name", 0] },
+   "top_employee.employee_name": 1, "top_employee.total_sales": 1 } }, 
+   { $sort: { "department_name": 1 } }])
+
+Question9:
+db.employees.aggregate([{ $group: { _id: "$department_id", 
+average_salary: { $avg: "$salary" } } }, { $lookup: { from: "departments", 
+localField: "_id", foreignField: "_id", as: "department_info" } }, 
+{ $project: { "department_name": { $arrayElemAt: ["$department_info.name", 0] },
+ "average_salary": 1 } }, 
+{ $sort: { "average_salary": -1 } }])
+
+
+Question10:
+db.employees.aggregate([{ $unwind: "$projects" }, 
+{ $group: { _id: { department_id: "$department_id", 
+employee_id: "$_id" }, employee_name: { $first: "$name" }, 
+total_projects: { $sum: 1 } } }, { $sort: { "total_projects": -1 } }, 
+{ $group: { _id: "$_id.department_id", 
+top_employee: { $first: { employee_name: "$employee_name", 
+total_projects: "$total_projects" } } } }, { $lookup: { from: "departments", 
+localField: "_id", foreignField: "_id", as: "department_info" } }, 
+{ $project: { "department_name": { $arrayElemAt: ["$department_info.name", 0] },
+ "top_employee.employee_name": 1, "top_employee.total_projects": 1 } }])

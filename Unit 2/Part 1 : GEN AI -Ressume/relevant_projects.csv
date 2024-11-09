@@ -1,0 +1,13 @@
+Project Title,Technologies Used,Description,Match Percentage
+WALL ART STORE,"ReactJs, Python FAST-API, AWS","Developed a high-performance e-commerce web application for selling wall art.
+Implemented secure user authentication using JWT, ensuring 90% of the APIs are unit tested.
+Built a scalable, Dockerized application with a React-Redux front-end and a FastAPI backend, utilizing AWS services like RDS for the database, S3 for image storage, and EC2 for deployment.
+Integrated payment functionality using the Razorpay gateway.",66.67%
+MOBILE BANKING APP,"React Native, Node.js, AWS","Developed a cross-platform mobile banking application with real-time transaction tracking.
+Implemented secure authentication using OAuth2 and biometric verification.
+Utilized AWS services like Lambda, DynamoDB, and S3 for backend services and storage.
+Achieved a 99.9% uptime for the application with efficient cloud deployment.",33.33%
+BLOG PLATFORM,"Django, PostgreSQL, AWS","Created a blogging platform with rich text editor and user profile management.
+Implemented secure user authentication and role-based access control.
+Used AWS services like EC2 for hosting, RDS for database, and CloudFront for CDN.
+Optimized the application for high traffic with caching and load balancing.",33.33%

@@ -1,0 +1,53 @@
+input:
+1
+n=6
+arr=100 60 70 65 80 85
+
+
+output:
+1 1 2 1 4 5
+
+pseudocode:
+
+spans=[0]*n
+stack=[]
+for(i=0;i<n;i++)
+    while stack and arr[stack[-1][0]]<=arr[i]:
+        stack.pop()
+    if not stack:
+        spans[i]=i+1
+    else:
+        spans[i]=i-stck[-1][0]   
+    stack.push((i,arr[i])) 
+print(spans)                
+
+
+t=int(input())
+for _ in range(t):
+  n=int(input())
+  arr=[int(num) for num in input().split()]
+  five_count=0
+  ten_count=0
+  for i in arr:
+    if i ==5:
+      five_count+=1
+    elif i ==10:
+      if five_count>0:
+        five_count-=1
+        ten_count+=1
+      else:  
+        print("NO")
+        break
+    elif i ==20:
+      if ten_count>0 and five_count>0:
+        ten_count-=1
+        five_count-=1
+      elif five_count>=3:
+        five_count-=3
+      else:
+        print("NO")
+        break
+  else:
+    print("YES")
+      
+      

@@ -1,0 +1,61 @@
+Question1:
+db.createCollection("users", {
+validator: {
+$jsonSchema: {
+bsonType: "object",
+required: ["email"],
+properties: {
+email: {
+bsonType: "string",
+pattern: "^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$",
+description: "must be a valid email address and unique"}}}}});
+
+
+Question2:
+db.runCommand({
+collMod: "users",
+validator: {
+$jsonSchema: {
+bsonType: "object",
+required: ["name"],
+properties: {
+name: {
+bsonType: "string",
+description: "must be a string and is required"}}}}});
+
+Question3:
+db.createCollection("articles", {
+validator: {
+$jsonSchema: {
+bsonType: "object",
+properties: {
+tags: {
+bsonType: "array",
+items: {
+bsonType: "string"}}}}}});
+
+Question4:
+db.createCollection("contacts", {
+validator: {
+$jsonSchema: {
+bsonType: "object",
+properties: {
+address: {
+bsonType: "object",
+required: ["street", "city"],
+properties: {
+street: {
+bsonType: "string"
+},
+city: {
+bsonType: "string"}}}}}}});
+
+Question5:
+db.createCollection("logs", {
+    capped: true,
+    size: 100 * 1024 * 1024,  // 100MB
+    max: 50000
+});
+
+Question6:
+Question7:

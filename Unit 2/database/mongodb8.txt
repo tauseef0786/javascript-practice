@@ -1,0 +1,84 @@
+Question1:
+db.orders.aggregate([
+  { $lookup: { 
+      from: "customers", 
+      localField: "customer_id", 
+      foreignField: "_id", 
+      as: "customer" } },
+  { $unwind: "$customer" },
+  { $lookup: { 
+      from: "products", 
+      localField: "_id", 
+      foreignField: "order_id", 
+      as: "products" } },
+  { $addFields: { 
+      totalOrderValue: "$total", 
+      productNames: "$products.name" } },
+  { $sort: { totalOrderValue: -1 } },
+  { $limit: 5 },
+  { $project: { 
+      customer_name: "$customer.name", 
+      order_date: 1, 
+      product_names: "$productNames" } }])
+
+Question2:
+db.products.aggregate([
+  { $match: { "release_date": { $gte: new Date(new Date().setFullYear(new Date().getFullYear() - 5)) } } },
+  { $group: { 
+      _id: { $month: "$release_date" }, 
+      products_count: { $sum: 1 } } },
+  { $project: { 
+      _id: 0, 
+      month: "$_id", 
+      products_count: 1 } },
+  { $sort: { month: 1 } }
+])
+
+Question3:
+db.products.aggregate([
+  {$bucket: {
+groupBy: "$price",
+boundaries: [0, 100, 500, Infinity],
+    default: "unknown",
+    output: {
+    count: { $sum: 1 },
+    products: { $push: { name: "$name", price: "$price" } }}}}])
+
+
+Question4:
+db.products.aggregate([
+  {$lookup: {
+      from: "suppliers",
+      localField: "supplier_id",
+      foreignField: "_id",
+      as: "supplier"}},
+  {$unwind: "$supplier"},
+  {$group: {
+      _id: "$supplier._id",
+      supplier_name: { $first: "$supplier.name" },
+      supplier_city: { $first: "$supplier.city" },
+      total_product_value: { $sum: { $multiply: ["$price", "$quantity"] } } } },
+      {$project: {
+      _id: 0,
+      supplier_name: 1,
+      supplier_city: 1,
+      total_product_value: 1}}])
+
+Question5:
+db.customers.aggregate([
+  {$match: {
+      "registration_date": { $gte: new Date(new Date().setFullYear(new Date().getFullYear() - 3)) }}},
+  {$group: {
+      _id: {
+        year: { $year: "$registration_date" },
+        month: { $month: "$registration_date" }},
+      count: { $sum: 1 }}},
+  {$project: {
+      _id: 0,
+      year: "$_id.year",
+      month: "$_id.month",
+      registrations_count: "$count"}},
+  {$sort: {year: 1,month: 1}}])
+
+Question6:
+Question7:

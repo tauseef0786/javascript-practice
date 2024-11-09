@@ -1,0 +1,32 @@
+Question1:
+db.hotels.aggregate([{$group:{_id:null,count:{$sum:1}}}])
+
+Question2:
+db.hotels.aggregate([{$group:{_id:"$CATEGORY",count:{$sum:1}}}])
+
+Question3:
+db.hotels.aggregate([{$group:{_id:"$CATEGORY",hotels:{$push:"$NAME"}}}])
+
+Question4:
+db.hotels.aggregate([{ $group: { _id: "$CATEGORY", hotels: { $push: "$$ROOT" } } }])
+
+Question5:
+db.hotels.aggregate([{ $group: { _id: "$CATEGORY", count: { $sum: 1 } } }])
+
+Question6:
+db.hotels.aggregate([{$project:{ROOM_SIZE:{$convert:{input:{$arrayElemAt:[{$split:["$ROOM SIZE"," "]},2]},to:"double",onError:0,onNull:0}}}},{$group:{_id:null,maxRoomSize:{$max:"$ROOM_SIZE"},minRoomSize:{$min:"$ROOM_SIZE"},avgRoomSize:{$avg:"$ROOM_SIZE"}}},{$project:{_id:0,maxRoomSize:1,minRoomSize:1,avgRoomSize:1}}])
+
+
+Question7:
+db.hotels.aggregate([{ $group: { _id: "$CATEGORY", maxRatingHotel: { $max: "$RATING" } } }])
+
+Question8:
+db.hotels.aggregate([{ $project: { NAME: 1, RATING: 1, costDifference: { $subtract: ["$FINAL_COST", "$BASE_COST"] } } }])
+
+Question9:
+db.hotels.aggregate([{ $unwind: "$IMAGES" }])
+
+Question10:
+db.hotels.aggregate([{ $addFields: { onboardStatus: true } }])
+
+
