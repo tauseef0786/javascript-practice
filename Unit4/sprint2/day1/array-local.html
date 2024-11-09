@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+</html>
+
+<script>
+    let nums=[1,2,3,4,5,6]
+    //setItem
+    localStorage.setItem("number-array",nums)
+    let array=localStorage.getItem("number-array")
+    console.log(array) //its convert in string so localstorage
+
+    //another option covert json form
+    let updated=JSON.stringify(nums)
+    console.log(updated)
+
+    //lets getItem 
+    let arr=localStorage.getItem("number-array")
+    console.log(arr)
+</script>

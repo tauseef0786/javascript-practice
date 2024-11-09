@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Carousel</title>
+    <style>
+        body{
+            display: flex;
+            flex-direction: column;
+            height: 100vh;
+            justify-content: center;
+            align-items: center;
+        }
+      #container {
+        box-shadow: rgba(17, 17, 26, 0.05) 0px 4px 16px, rgba(17, 17, 26, 0.05) 0px 8px 32px;
+        width: 100%;
+        max-width: 600px;
+        height: 400px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-top: 20px;
+        border: 5px solid I#ddd;
+        border-radius: 10px;
+        overflow: hidden;
+        background-color: #fff;
+      }
+      /* Style for images */
+      img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        border-radius: 10px;
+      }
+      button{
+        cursor: pointer;
+        padding: 13px 26px;
+        border-radius: 3px;
+        border: 1px solid gray;
+      }
+      .btn :nth-child(1){
+        background-color: green;
+        margin-right: 10px;
+        
+      }
+      .btn :nth-child(2){
+        background-color: red;
+      }
+      h1{
+        text-align: center;
+      }
+    </style>
+  </head>
+  <body>
+   
+    <div class="btn">
+      <button onclick="start()">Start</button>
+      <button onclick="stop()">Stop</button>
+    </div>
+    <h1>Image SlideShow</h1>
+    <div id="container">
+      <!-- images will append here -->
+    </div>
+  </body>
+</html>
+<script>
+  var images = [
+    "https://www.w3schools.com/w3images/mountains.jpg",
+    "https://www.w3schools.com/w3images/forest.jpg",
+    "https://www.w3schools.com/w3images/snow.jpg",
+    "https://www.w3schools.com/w3images/fjords.jpg",
+    "https://www.w3schools.com/w3images/lights.jpg",
+    "https://www.w3schools.com/w3images/mountains.jpg",
+    "https://www.w3schools.com/w3images/bridge.jpg",
+    "https://www.w3schools.com/w3images/snow.jpg",
+    "https://www.w3schools.com/w3images/desert.jpg",
+    "https://www.w3schools.com/w3images/forest.jpg",
+    "https://www.w3schools.com/w3images/lights.jpg",
+    "https://www.w3schools.com/w3images/mountains.jpg",
+    "https://www.w3schools.com/w3images/forest.jpg",
+    "https://www.w3schools.com/w3images/bridge.jpg",
+    "https://www.w3schools.com/w3images/desert.jpg",
+    "https://www.w3schools.com/w3images/forest.jpg",
+    "https://www.w3schools.com/w3images/fjords.jpg",
+    "https://www.w3schools.com/w3images/snow.jpg",
+    "https://www.w3schools.com/w3images/mountains.jpg",
+    "https://www.w3schools.com/w3images/lights.jpg",
+  ];
+  let x
+  let slideimage = document.createElement("img");
+  slideimage.src = images[0];
+  document.querySelector("#container").append(slideimage);
+
+  function start() {
+    let i = 1;
+    document.querySelector("h1").innerText="image slide show stared"
+    x = setInterval(function () {
+      if (i === images.length) {
+        i = 0;
+      }
+      slideimage.src = images[i++];
+      document.querySelector("#container").append(slideimage);
+    }, 2000);
+  }
+
+  function stop() {
+    document.querySelector("h1").innerText="image slide show stopped"
+
+    clearInterval(x);
+  }
+</script>
