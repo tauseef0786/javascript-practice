@@ -148,11 +148,18 @@ root.render(<App/>)
 // any layout
 
 
+// let flag = true
 
-let flag = true
+// let App = ()=>{
+//     return (<h1>{ flag ? "hello world" : "bye world" }</h1>)  // conditional rendering
+// }
 
-let App = ()=>{
-    return (<h1>{ flag ? "hello world" : "bye world" }</h1>)  // conditional rendering
-}
+// root.render(App())
 
-root.render(App())
+
+// //output of below code:  Hello,John!
+// const userName = "John";
+// const element = <h1>Hello, {userName}!</h1>;
+// ReactDOM.createRoot(document.getElementById("root")).render(element);
+
+
