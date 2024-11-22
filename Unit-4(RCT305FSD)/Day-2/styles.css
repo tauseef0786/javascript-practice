@@ -1,0 +1,39 @@
+
+.cards{
+    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+    background-color: rgb(11, 126, 88);
+    padding:3%;
+}
+.cards img{
+    margin: auto;
+    width: 100%;
+}
+.container-light{
+    padding: 20px;
+    width: 90%;
+    margin : auto;
+    display: grid;
+    grid-template-columns: repeat(3,1fr);
+    gap:20px;
+    background-color: midnightblue;
+    color:white;
+}
+
+.container-dark{
+    padding: 20px;
+    display: grid;
+    width:90%;
+    margin: auto;
+    grid-template-columns: repeat(3,1fr);
+    gap:20px;
+    background-color: rgb(109, 245, 245);
+    color:black;
+}
+.dark{
+    background-color: black;
+    color:white;
+}
+.light{
+    background-color: aqua;
+    color:midnightblue;
+}
