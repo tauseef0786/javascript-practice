@@ -1,0 +1,83 @@
+/* General Styles */
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f5fafa; /* Light teal background */
+    margin: 0;
+    padding: 0;
+    color: #00363a; /* Dark teal for text */
+  }
+  
+  /* Container Grid for Rows and Columns */
+  div.container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); /* Flexible columns */
+    gap: 20px;
+    padding: 20px;
+    margin: 0 auto;
+    max-width: 1200px; /* Limit max width */
+  }
+  
+  /* Individual Card Styles */
+  div.card {
+    background-color: #ffffff; /* White background */
+    border: 1px solid #e0e0e0; /* Light gray border */
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+    transition: box-shadow 0.3s ease, transform 0.2s ease;
+  }
+  
+  div.card:hover {
+    box-shadow: 0 8px 12px rgba(0, 0, 0, 0.15); /* Highlight on hover */
+    transform: translateY(-5px); /* Slight lift on hover */
+  }
+  
+  div.card p {
+    margin: 5px 0;
+    font-size: 14px;
+    color: #004d58;
+  }
+  
+  div.card p b {
+    color: #002f34; /* Dark teal for bold text */
+  }
+  
+  /* Buttons */
+  button {
+    background-color: #00838f; /* Teal blue */
+    color: #ffffff; /* White text */
+    border: none;
+    padding: 10px 20px;
+    font-size: 16px;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 10px;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+  }
+  
+  button:hover {
+    background-color: #005662; /* Darker teal */
+    transform: translateY(-2px); /* Subtle hover effect */
+  }
+  
+  /* Responsive Media Queries */
+  @media (max-width: 768px) {
+    div.container {
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); /* Adjust column width */
+    }
+  
+    button {
+      width: 100%; /* Buttons expand on smaller screens */
+    }
+  }
+  
+  @media (max-width: 480px) {
+    div.card {
+      padding: 15px; /* Adjust padding for smaller screens */
+    }
+  
+    h2, h3 {
+      font-size: 18px; /* Smaller heading font size */
+    }
+  }
+  
