@@ -1,0 +1,42 @@
+/* General Navbar Styling */
+.navbar {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #333;
+    padding: 10px 0;
+  }
+  
+  /* Navbar Link Styling */
+  .navbar-link {
+    color: white;
+    text-decoration: none;
+    margin: 0 20px;
+    font-size: 1.2rem;
+    transition: color 0.3s ease, transform 0.3s ease;
+  }
+  
+  /* Hover Effect for Links */
+  .navbar-link:hover {
+    color: #007bff; /* Blue color on hover */
+    transform: scale(1.1); /* Slightly enlarge the text on hover */
+  }
+  
+  /* Navbar Link Active (optional) */
+  .navbar-link:active {
+    color: #0056b3; /* Darker blue when active */
+  }
+  
+  /* Responsive Navbar */
+  @media (max-width: 768px) {
+    .navbar {
+      flex-direction: column;
+      padding: 20px;
+    }
+  
+    .navbar-link {
+      margin: 10px 0;
+      font-size: 1.5rem;
+    }
+  }
+  
